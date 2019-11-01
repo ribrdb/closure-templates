@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@bazel/typescript@^0.39.1":
-  version "0.39.1"
-  resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-0.39.1.tgz#fbe3f9e287aa294935987bbbd9f2dce5341a9b02"
-  integrity sha512-n4P6VKir1L3+rM/DgHa5mnlCfT7Wo0ra+TnkbTuZ08SeN/r8HTmClK6YADoDc5ORMQhzq8eXuVuLWeUUsFJyHQ==
+"@bazel/typescript@0.37.0":
+  version "0.37.0"
+  resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-0.37.0.tgz#9213d963cf132db614a9780b87815cda256a3e14"
+  integrity sha512-4Pz5x87ihPjKQxo/XMfFXJeGHiNEOdaIqLOqzuIXbwczJvMxPKMwnXzikr9XkjHrHs26zZo4iMtXALqW2j7C5w==
   dependencies:
     protobufjs "6.8.8"
     semver "5.6.0"
@@ -79,6 +79,11 @@ buffer-from@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
   integrity sha512-MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==
+
+incremental-dom@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/incremental-dom/-/incremental-dom-0.7.0.tgz#b03664731bdc430035f32df7d76fa56daedee9b8"
+  integrity sha512-SBHQ6AiCmtwh7TU9hjq2CspasJe7ggGa9k+qYZft+d5Qq9v7V+07wlnRSZH5GGYjI8wn6U5p7dDua7f1bih52g==
 
 long@^4.0.0:
   version "4.0.0"

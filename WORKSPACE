@@ -369,13 +369,11 @@ rules_javacc_toolchains()
 
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "3d7296d834208792fa3b2ded8ec04e75068e3de172fae79db217615bd75a6ff7",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.39.1/rules_nodejs-0.39.1.tar.gz"],
+    sha256 = "0d9660cf0894f1fe1e9840818553e0080fbce0851169812d77a70bdb9981c946",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.37.0/rules_nodejs-0.37.0.tar.gz"],
 )
 
-load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
-
-node_repositories(package_json = ["//:package.json"])
+load("@build_bazel_rules_nodejs//:defs.bzl", "yarn_install")
 
 yarn_install(
     name = "npm",
@@ -391,18 +389,3 @@ load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
 
 ts_setup_workspace()
 
-http_archive(
-    name = "incremental_dom",
-    build_file_content = """
-filegroup(
-    name="incremental_dom",
-    # TODO: use release version of debug.ts
-    srcs=glob(["index.ts","src/*.ts"]),
-    visibility=["//visibility:public"],
-)
-""",
-    sha256 = "a072a6ef93370348b643aabb7535520fb9e47c820f394c465a068bb1a95eae57",
-    strip_prefix = "incremental-dom-0.7.0",
-    type = "tar.gz",
-    urls = ["https://github.com/google/incremental-dom/archive/0.7.0.tar.gz"],
-)

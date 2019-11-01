@@ -23,9 +23,11 @@
   },
   "version": "20191008.0.0",
   "devDependencies": {
-    "@bazel/typescript": "^0.39.1",
+    "@bazel/typescript": "0.37.0",
     "tsickle": "0.35.0",
     "typescript": "~3.4.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "incremental-dom": "^0.7.0"
+  }
 }
