@@ -1,0 +1,31 @@
+{
+  "author": {
+    "name": "Google, Inc."
+  },
+  "bugs": {
+    "url": "https://github.com/google/closure-templates/issues"
+  },
+  "deprecated": false,
+  "description": "A client- and server-side templating system that helps you dynamically build reusable HTML and UI elements",
+  "homepage": "https://developers.google.com/closure/templates/",
+  "keywords": [
+    "javascript",
+    "closure",
+    "build",
+    "soy",
+    "templates"
+  ],
+  "license": "Apache-2.0",
+  "name": "google-closure-templates",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/google/closure-templates.git"
+  },
+  "version": "20191008.0.0",
+  "devDependencies": {
+    "@bazel/typescript": "^0.39.1",
+    "tsickle": "0.35.0",
+    "typescript": "~3.4.1"
+  },
+  "dependencies": {}
+}

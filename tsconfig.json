@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": false,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "pretty": true,
+    "strict": true,
+    "module": "commonjs",
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
+    "sourceMap": true
+  },
+  "bazelOptions": {
+    "tsickle": true,
+    "googmodule": true
+  }
+}

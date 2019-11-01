@@ -1,2 +1,4 @@
 /bazel-*
 target/
+node_modules/
+

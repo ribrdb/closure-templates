@@ -1,23 +1,26 @@
 ##
- # Copyright 2013 Google Inc.
- #
- # Licensed under the Apache License, Version 2.0 (the "License");
- # you may not use this file except in compliance with the License.
- # You may obtain a copy of the License at
- #
- #     http://www.apache.org/licenses/LICENSE-2.0
- #
- # Unless required by applicable law or agreed to in writing, software
- # distributed under the License is distributed on an "AS IS" BASIS,
- # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- # See the License for the specific language governing permissions and
- # limitations under the License.
- #
- # NOTE: THIS IS A WORK IN PROGRESS AND IS NOT EXPECTED TO WORK AS WE HAVE
- # NO CONTINUOUS INTEGRATION.
+# Copyright 2013 Google Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# NOTE: THIS IS A WORK IN PROGRESS AND IS NOT EXPECTED TO WORK AS WE HAVE
+# NO CONTINUOUS INTEGRATION.
 ##
 
-workspace(name = "com_google_closure_templates")
+workspace(
+    name = "com_google_closure_templates",
+    managed_directories = {"@npm": ["node_modules"]},
+)
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:java.bzl", "java_import_external")
@@ -325,8 +328,11 @@ http_archive(
         "https://github.com/bazelbuild/rules_java/releases/download/0.1.0/rules_java-0.1.0.tar.gz",
     ],
 )
+
 load("@rules_java//java:repositories.bzl", "rules_java_dependencies", "rules_java_toolchains")
+
 rules_java_dependencies()
+
 rules_java_toolchains()
 
 # Apache 2.0
@@ -338,8 +344,11 @@ http_archive(
         "https://github.com/bazelbuild/rules_proto/archive/9cd4f8f1ede19d81c6d48910429fe96776e567b1.tar.gz",
     ],
 )
+
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+
 rules_proto_dependencies()
+
 rules_proto_toolchains()
 
 # Apache 2.0
@@ -351,6 +360,49 @@ http_archive(
         "https://github.com/bazel-packages/xyz_yannic_rules_javacc/archive/2c5682e28ce9ff92b672f6bfcea244d627289ca0.tar.gz",
     ],
 )
+
 load("@xyz_yannic_rules_javacc//javacc:repositories.bzl", "rules_javacc_dependencies", "rules_javacc_toolchains")
+
 rules_javacc_dependencies()
+
 rules_javacc_toolchains()
+
+http_archive(
+    name = "build_bazel_rules_nodejs",
+    sha256 = "3d7296d834208792fa3b2ded8ec04e75068e3de172fae79db217615bd75a6ff7",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.39.1/rules_nodejs-0.39.1.tar.gz"],
+)
+
+load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
+
+node_repositories(package_json = ["//:package.json"])
+
+yarn_install(
+    name = "npm",
+    package_json = "//:package.json",
+    yarn_lock = "//:yarn.lock",
+)
+
+load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
+
+install_bazel_dependencies()
+
+load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
+
+ts_setup_workspace()
+
+http_archive(
+    name = "incremental_dom",
+    build_file_content = """
+filegroup(
+    name="incremental_dom",
+    # TODO: use release version of debug.ts
+    srcs=glob(["index.ts","src/*.ts"]),
+    visibility=["//visibility:public"],
+)
+""",
+    sha256 = "a072a6ef93370348b643aabb7535520fb9e47c820f394c465a068bb1a95eae57",
+    strip_prefix = "incremental-dom-0.7.0",
+    type = "tar.gz",
+    urls = ["https://github.com/google/incremental-dom/archive/0.7.0.tar.gz"],
+)
